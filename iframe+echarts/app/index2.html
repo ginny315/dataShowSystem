@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>数据展示系统</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name = "format-detection" content = "telephone=no">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+    <link href="styles/main.less" rel="stylesheet">
+</head>
+<body class="page-index" data-page ="index" page-value="home">
+<div class="top-container" ng-controller="admin">
+    <img src="">
+    <strong>数据可视化展示系统-版本<span id="version"></span></strong>
+    <div class="top-right">
+        <span>欢迎，</span>
+        <span id="adminName"></span>
+        <button class="btn btn-sm btn-normal" click="logout()">退出</button>
+    </div>
+</div>
+<script id="menu_list_template" type="html/javascript">
+    <div class="menuContainer">
+        <ul class="menu-list">
+        {{each menuList}}
+            <li class="top-level">
+                <span>{{$value.text}}</span>
+                <ul class="sub-menu-list" id="subMenuList">
+                  {{each $value.subMenu as i}}
+                 <li class="second-level" data-target="{{i.target}}">
+                  {{i.name}}
+                 </li>
+                   {{/each}}
+                </ul>
+            </li>
+            {{/each}}
+        </ul>
+        </div>
+        </script>
+<div class="main-container">
+    <div class="content">
+        <iframe src="" frameborder="0" width="600" height="100%">
+        </iframe>
+    </div>
+</div>
+<script src="//s.maiyaole.com/common/FFF/zepto/v0.2/FFF.fc.template.min.js"></script>
+<!-- build:js scripts/index.js -->
+<script src="scripts/config.js"></script>
+<script>
+    require(['./index2'])
+</script>
+</body>
+</html>

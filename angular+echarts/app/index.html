@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>数据可视化展示系统</title>
+    <link rel="stylesheet" href="css/index.css"/>
+	<link rel="stylesheet" type="text/css" href="css/analysis.css">
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body data-ngApp="myApp">
+<!--<div class="container-fluid" ng-controller="admin" bindonce>-->
+	<!--<strong>精准化推送后台管理系统-版本<span id="version"></span></strong>-->
+<!--</div>-->
+<div class="top-container" ng-controller="admin" bindonce>
+	<img src="">
+	<strong>数据可视化展示系统-版本<span id="version"></span></strong>
+	<div class="top-right">
+		<span>欢迎，</span>
+		<span bo-bind="admin.name"></span>
+		<button class="btn btn-sm btn-normal" ng-click="logout()">退出</button>
+	</div>
+</div>
+<div ng-controller="menu" class="main-container">
+	<ul bindonce="menuList" class="menu-list">
+		<li class="top-level" ng-repeat="menu in menuList">
+			<span bo-bind="menu.text"></span>
+			<ul class="sub-menu-list">
+				<li class="second-level" ng-repeat="submenu in menu.children">
+					<a ui-sref="{{submenu.state}}" bo-bind="submenu.text" ng-class="{'active': currentState==submenu.state}"></a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<div class="content" bindonce>
+		<!-- <div class="path">
+			<span bo-bind="path"></span>
+		</div> -->
+		<div ui-view class="view"></div>
+	</div>
+</div>
+
+
+
+<script data-main="js/main" src="lib/requirejs/require.js"></script>
+</body>
+</html>

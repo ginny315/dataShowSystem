@@ -1,0 +1,92 @@
+@import "lib/base";
+@import "lib/common";
+@import "lib/global";
+*{
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'iconfont';  /* project id 239415 */
+  src: url('//at.alicdn.com/t/font_8dk1kijuymohia4i.eot');
+  src: url('//at.alicdn.com/t/font_8dk1kijuymohia4i.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_8dk1kijuymohia4i.woff') format('woff'),
+  url('//at.alicdn.com/t/font_8dk1kijuymohia4i.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_8dk1kijuymohia4i.svg#iconfont') format('svg');
+}
+.iconFont{
+  font-family: 'iconfont';
+  font-size: 16px;
+  font-style:normal;
+}
+.top-container {
+  overflow: hidden;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  background: #efefef;
+  border-bottom: 2px solid #bbb;
+  .top-right {
+    float: right;
+  }
+}
+
+.main-container {
+  position: relative;
+  padding: 0 10px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  .menu-list {
+    padding-top: 10px;
+    width: 150px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #eee;
+    margin-left: 0;
+    padding-left: 10px;
+    box-sizing: border-box;
+    .sub-menu-list {
+      .second-level a {
+        color: #767676;
+        padding-left: 15px;
+        line-height: 1.5;
+        text-decoration: none;
+        &:hover {
+          color: #563d7c;
+          padding-left: 14px;
+          border-left: 1px solid #563d7c;
+        }
+        &.active {
+          color: #563d7c;
+          font-weight: 700;
+          padding-left: 13px;
+          border-left: 2px solid #563d7c;
+        }
+      }
+    }
+  }
+  .content {
+    width: 100%;
+    height: 100%;
+    padding: 0 10px 0 200px;
+    box-sizing: border-box;
+    .view {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      padding-top: 20px;
+    }
+    .path {
+      padding: 15px 10px;
+      border-bottom: 1px solid #000;
+    }
+  }
+}
+
+.home{
+  .bar1{
+    height: 300px;
+  }
+}

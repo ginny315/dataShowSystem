@@ -1,0 +1,60 @@
+{
+  "title":"home业的配置",
+  "modules":[
+    {
+      "getDataApi":"/data/analysis/salesDataPie.json",
+      "options" :{
+        "type": "pie",
+        "backgroundColor": "#2c343c",
+        "title": {
+          "text": "这是home第三张图",
+          "subtext": "这是home第三张图副标题",
+          "textStyle": {
+            "color": "#ccc"
+          }
+        },
+        "tooltip" : {
+          "trigger": "axis"
+        },
+        "legend": {
+          "data":[]
+        },
+        "calculable" : true,
+        "series" : {
+          "name":"访问来源",
+          "type":"pie",
+          "radius" : "55%",
+          "center": ["50%", "50%"],
+          "dataFunc":"sort(function (a, b) { return a.value - b.value})",
+          "roseType": "angle",
+          "label": {
+            "normal": {
+              "textStyle": {
+                "color": "rgba(255, 255, 255, 0.3)"
+              }
+            }
+          },
+          "labelLine": {
+            "normal": {
+              "lineStyle": {
+                "color": "rgba(255, 255, 255, 0.3)"
+              },
+              "smooth": 0.2,
+              "length": 10,
+              "length2": 20
+            }
+          },
+          "itemStyle": {
+            "normal": {
+              "color": "#c23531",
+              "shadowBlur": 200,
+              "shadowColor": "rgba(0, 0, 0, 0.5)"
+            }
+          },
+          "animationType": "scale",
+          "animationEasing": "elasticOut"
+        }
+      }
+    }
+  ]
+}

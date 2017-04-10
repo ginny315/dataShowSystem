@@ -1,0 +1,33 @@
+{
+  "ret": 1,
+  "data": [
+    {
+      "alias_name": "中药测评",
+      "filter_user_count": "1233",
+      "open_rate": "23.555%",
+      "send_status": "0",
+      "send_user_rate": "99.3%",
+      "sms_type": "0",
+      "type_date": "2019-2-21",
+      "filter_user_count": "233"
+    },
+    {
+      "alias_name": "中药测评",
+      "filter_user_count": "1233",
+      "open_rate": "23.555%",
+      "send_status": "0",
+      "send_user_rate": "99.3%",
+      "sms_type": "0",
+      "type_date": "2019-2-21"
+    },
+    {
+      "alias_name": "中药测评",
+      "filter_user_count": "1233",
+      "open_rate": "23.555%",
+      "send_status": "0",
+      "send_user_rate": "99.3%",
+      "sms_type": "0",
+      "type_date": "2019-2-21"
+    }
+  ]
+}

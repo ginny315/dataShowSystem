@@ -1,0 +1,24 @@
+<div bindonce="" class="confirm common-del-modal">
+    <div class="modal-header">
+        <h4 class="modal-title">确认发送</h4>
+        <button type="button" class="close pull-right" ng-click="cancel()" style="margin-top: -28px;">
+            ×
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group text-center">
+           <span ng-bind="marketing.sendAction"></span>
+        </div>
+        <form class="" name="mf">
+            <div class="form-group text-center">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                </div>
+                <div class="col-sm-6">
+                    <button class="btn btn-default " type="button" ng-click="cancel()" >取消</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

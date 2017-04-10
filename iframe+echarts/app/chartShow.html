@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>数据展示系统</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name = "format-detection" content = "telephone=no">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+        <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+		<link href="styles/main.less" rel="stylesheet">
+	</head>
+	<body>
+    <div class="main-container iframe-main-container">
+        <div class="content">
+
+            <div class="chart-container">
+                <div class="chart" id="chart"></div>
+            </div>
+
+        </div>
+    </div>
+    <script src="//s.maiyaole.com/common/FFF/zepto/v0.2/FFF.fc.template.min.js"></script>
+    <!-- build:js scripts/index.js -->
+    <script src="scripts/config.js"></script>
+    <script>
+        require(['./chartShow'])
+    </script>
+	</body>
+</html>

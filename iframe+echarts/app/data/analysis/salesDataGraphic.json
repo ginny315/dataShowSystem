@@ -1,0 +1,289 @@
+{
+  "ret": 1,
+  "data":[
+    {
+      "period": "week",
+      "name": "最高销量",
+      "data": [
+        {
+          "name": "北京",
+          "value": 435
+        },
+        {
+          "name": "天津",
+          "value": 674
+        },
+        {
+          "name": "上海",
+          "value": 467
+        },
+        {
+          "name": "重庆",
+          "value": 452
+        },
+        {
+          "name": "河北",
+          "value": 23
+        },
+        {
+          "name": "河南",
+          "value": 46
+        },
+        {
+          "name": "云南",
+          "value": 86
+        },
+        {
+          "name": "辽宁",
+          "value": 745
+        },
+        {
+          "name": "黑龙江",
+          "value": 156
+        },
+        {
+          "name": "湖南",
+          "value": 865
+        },
+        {
+          "name": "安徽",
+          "value": 56
+        },
+        {
+          "name": "山东",
+          "value": 146
+        },
+        {
+          "name": "新疆",
+          "value": 46
+        },
+        {
+          "name": "江苏",
+          "value": 245
+        },
+        {
+          "name": "浙江",
+          "value": 754
+        },
+        {
+          "name": "江西",
+          "value": 345
+        },
+        {
+          "name": "湖北",
+          "value": 573
+        },
+        {
+          "name": "广西",
+          "value": 173
+        },
+        {
+          "name": "甘肃",
+          "value": 143
+        },
+        {
+          "name": "山西",
+          "value": 546
+        },
+        {
+          "name": "内蒙古",
+          "value": 45
+        },
+        {
+          "name": "陕西",
+          "value": 67
+        },
+        {
+          "name": "吉林",
+          "value": 32
+        },
+        {
+          "name": "福建",
+          "value": 156
+        },
+        {
+          "name": "贵州",
+          "value": 77
+        },
+        {
+          "name": "广东",
+          "value": 325
+        },
+        {
+          "name": "青海",
+          "value": 167
+        },
+        {
+          "name": "西藏",
+          "value": 145
+        },
+        {
+          "name": "四川",
+          "value": 12
+        },
+        {
+          "name": "宁夏",
+          "value": 145
+        },
+        {
+          "name": "海南",
+          "value": 15
+        },
+        {
+          "name": "台湾",
+          "value": 243
+        },
+        {
+          "name": "香港",
+          "value": 146
+        },
+        {
+          "name": "澳门",
+          "value": 15
+        }
+      ]
+    },
+    {
+      "period": "week",
+      "name": "最低销量",
+      "data": [
+        {
+          "name": "北京",
+          "value": 43
+        },
+        {
+          "name": "天津",
+          "value": 64
+        },
+        {
+          "name": "上海",
+          "value": 67
+        },
+        {
+          "name": "重庆",
+          "value": 5
+        },
+        {
+          "name": "河北",
+          "value": 23
+        },
+        {
+          "name": "河南",
+          "value": 46
+        },
+        {
+          "name": "云南",
+          "value": 86
+        },
+        {
+          "name": "辽宁",
+          "value": 45
+        },
+        {
+          "name": "黑龙江",
+          "value": 16
+        },
+        {
+          "name": "湖南",
+          "value": 85
+        },
+        {
+          "name": "安徽",
+          "value": 5
+        },
+        {
+          "name": "山东",
+          "value": 16
+        },
+        {
+          "name": "新疆",
+          "value": 46
+        },
+        {
+          "name": "江苏",
+          "value": 25
+        },
+        {
+          "name": "浙江",
+          "value": 54
+        },
+        {
+          "name": "江西",
+          "value": 34
+        },
+        {
+          "name": "湖北",
+          "value": 53
+        },
+        {
+          "name": "广西",
+          "value": 73
+        },
+        {
+          "name": "甘肃",
+          "value": 13
+        },
+        {
+          "name": "山西",
+          "value": 56
+        },
+        {
+          "name": "内蒙古",
+          "value": 5
+        },
+        {
+          "name": "陕西",
+          "value": 7
+        },
+        {
+          "name": "吉林",
+          "value": 32
+        },
+        {
+          "name": "福建",
+          "value": 15
+        },
+        {
+          "name": "贵州",
+          "value": 77
+        },
+        {
+          "name": "广东",
+          "value": 35
+        },
+        {
+          "name": "青海",
+          "value": 16
+        },
+        {
+          "name": "西藏",
+          "value": 14
+        },
+        {
+          "name": "四川",
+          "value": 12
+        },
+        {
+          "name": "宁夏",
+          "value": 15
+        },
+        {
+          "name": "海南",
+          "value": 15
+        },
+        {
+          "name": "台湾",
+          "value": 23
+        },
+        {
+          "name": "香港",
+          "value": 16
+        },
+        {
+          "name": "澳门",
+          "value": 5
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "ret": 1,
+  "data": {
+    "menuList": [
+      {
+        "text": "页面选择",
+        "subMenu": [
+          {
+            "name": "首页",
+            "target": "home"
+          },
+          {
+            "name": "Page1页",
+            "target": "page1"
+          },
+          {
+            "name": "Page2页",
+            "target": "page2"
+          }
+        ]
+      },
+      {
+        "text": "button选择",
+        "subMenu": [
+          {
+            "name": "加入购物车",
+            "target": "join"
+          },
+          {
+            "name": "button1",
+            "target": "button1"
+          },
+          {
+            "name": "button2",
+            "target": "button2"
+          }
+        ]
+      }
+    ]
+  }
+}

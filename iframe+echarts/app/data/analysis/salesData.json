@@ -1,0 +1,44 @@
+{
+  "ret": 1,
+  "data": [
+    {
+      "period": "week",
+      "name":"最高销量",
+      "data":[
+        {"value":11,"name":"周一"},
+        {"value":11,"name":"周二"},
+        {"value":15,"name":"周三"},
+        {"value":13,"name":"周四"},
+        {"value":12,"name":"周五"},
+        {"value":13,"name":"周六"},
+        {"value":10,"name":"周七"}
+        ]
+    },
+    {
+      "period": "week",
+      "name":"最低销量",
+      "data":[
+        {"value":1,"name":"周一"},
+        {"value":-2,"name":"周二"},
+        {"value":2,"name":"周三"},
+        {"value":5,"name":"周四"},
+        {"value":3,"name":"周五"},
+        {"value":2,"name":"周六"},
+        {"value":0,"name":"周七"}
+      ]
+    },
+    {
+      "period": "week",
+      "name":"中间销量",
+      "data":[
+        {"value":4,"name":"周一"},
+        {"value":8,"name":"周二"},
+        {"value":7,"name":"周三"},
+        {"value":4,"name":"周四"},
+        {"value":10,"name":"周五"},
+        {"value":6,"name":"周六"},
+        {"value":3,"name":"周七"}
+      ]
+    }
+  ]
+}

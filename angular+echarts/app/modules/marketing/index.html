@@ -1,0 +1,248 @@
+<div class="discount-card-operate marketing">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-horizontal" name="f">
+            <fieldset>
+                <!--发送渠道-->
+                <div class="form-group form-inline">
+                    <label class="col-xs-2">发送渠道：</label>
+                    <small class="text-danger"><i class="iconFont">&#xe646;</i> 必填项</small>
+                    <div class="col-sm-1" ng-repeat="item in marketing.serviceList">
+                        <label>
+                            <input
+                                    type="checkbox"
+                                    value="{{item.value}}"
+                                    ng-checked="marketing.serviceListText.indexOf(item.name)>-1"
+                                    ng-click="toggleSelectionSendWay(item.value)"
+                                    required> {{item.name}}
+                        </label>
+                    </div>
+                </div>
+                <!--活动单品ID-->
+                <div class="form-group form-inline" ng-if="marketing.serviceListText.indexOf(0)>-1">
+                    <label  class="col-xs-2">活动单品ID：</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" ng-model="marketing.productId" name="productId">
+                        <small>选填</small>
+                        <button type="button" class="btn btn-primary" ng-click="searchProductName()" ng-disabled="!marketing.productId">查看商品名称</button>
+                    </div>
+                </div>
+                <!--这里显示商品名称-->
+                <div class="form-group form-inline" ng-if="marketing.showProductName == true" ng-repeat="item in marketing.productName">
+                    <label  class="col-xs-2"></label>
+                    <div class="col-xs-10" style="padding-top: 10px;">{{item.pmName}}</div>
+                </div>
+                <div class="form-group form-inline" ng-if="marketing.showProductName == true && marketing.productName.length == 0">
+                    <label  class="col-xs-2"></label>
+                    <div class="col-xs-10" style="padding-top: 10px;">此商品无名称显示</div>
+                </div>
+                <!--短信名称-->
+                <div class="form-group form-inline" ng-if="marketing.serviceListText.indexOf(0)>-1">
+                    <label  class="col-xs-2">短信名称：</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" ng-model="marketing.shortMessageName" name="shortMessageName">
+                        <small>选填</small>
+                    </div>
+                </div>
+                <!--tracker-->
+                <div class="form-group form-inline" ng-if="marketing.serviceListText.indexOf(0)>-1">
+                    <label  class="col-xs-2">Tracker：</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" ng-model="marketing.tracker" name="trackerName">
+                        <small>选填</small>
+                    </div>
+                </div>
+                <!--短信接口-->
+                <div class="form-group form-inline" ng-if="marketing.serviceListText.indexOf(0)>-1">
+                    <label class="col-xs-2">短信接口：</label>
+                    <div class="col-xs-10">
+                        <select class="form-control" name='type' required ng-model="marketing.shortMessageInterface" >
+                            <option value="dh">大汉三通</option>
+                            <option value="mw">梦网</option>
+                            <option value="zn">咨诺</option>
+                        </select>
+                    </div>
+                </div>
+                <!--短信内容-->
+                <div class="form-group form-inline" ng-class="{'has-success':!f.shortMessageContent.$invalid,'has-error':f.shortMessageContent.$invalid}" ng-if="marketing.serviceListText.indexOf(0)>-1">
+                    <label  class="col-xs-2">短信内容：<span class="text-danger">*</span></label>
+                    <div class="col-xs-10">
+                        <textarea class="form-control" cols="64" rows="4" ng-model="marketing.shortMessageContent"
+                                  required name="shortMessageContent" maxlength="70"></textarea>
+                        <span ng-if="f.shortMessageContent.$invalid" class="text-danger margin m-l-2r">
+                            <i class="iconFont">&#xe646;</i> 必填项
+                        </span>
+                        <span class="margin m-l-2r">已输入</span>
+                        <span class="margin m-l-2r" ng-bind="marketing.shortMessageContent.length || 0"></span>
+                        <span class="margin m-l-2r">字（限制70字）</span>
+                        <span ng-if="marketing.shortMessageContent.length > 70" class="text-danger margin m-l-2r">
+                            <i class="iconFont">&#xe646;</i>不能大于70字
+                        </span>
+                    </div>
+                </div>
+
+                <!--非短信渠道露出-->
+                <div class="form-group form-inline" ng-if="marketing.serviceListText.indexOf(1)>-1 || marketing.serviceListText.indexOf(2)>-1">
+                    <label  class="col-xs-2">消息名称：</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" ng-model="marketing.messageName" name="messageName">
+                        <small>选填</small>
+                    </div>
+                </div>
+                <!--消息内容-->
+                <div class="form-group form-inline" ng-class="{'has-success':!f.messageContent.$invalid,'has-error':f.messageContent.$invalid}"
+                     ng-if="marketing.serviceListText.indexOf(1)>-1 || marketing.serviceListText.indexOf(2)>-1">
+                    <label  class="col-xs-2">消息内容：<span class="text-danger">*</span></label>
+                    <div class="col-xs-10">
+                        <textarea class="form-control" cols="64" rows="4" ng-model="marketing.messageContent"
+                                  required name="messageContent"></textarea>
+                        <span ng-if="f.messageContent.$invalid" class="text-danger margin m-l-2r">
+                            <i class="iconFont">&#xe646;</i> 必填项
+                        </span>
+                        <!--<span class="margin m-l-2r">已输入</span>-->
+                        <!--<span class="margin m-l-2r" ng-bind="marketing.messageContent.length || 0"></span>-->
+                        <!--<span class="margin m-l-2r">字（限制70字）</span>-->
+                        <!--<span ng-if="marketing.messageContent.length > 70" class="text-danger margin m-l-2r">-->
+                            <!--<i class="iconFont">&#xe646;</i>不能大于70字-->
+                        <!--</span>-->
+                    </div>
+                </div>
+                <!--消息配图-->
+                <div class="form-group has-feedback form-inline"
+                     ng-if="marketing.serviceListText.indexOf(2)>-1">
+                    <form class="form-horizontal" name="marketing-pic">
+                    <label class="col-sm-2">消息配图：</label>
+                    <div class="col-sm-5">
+                        <div class="file-input">
+                            <div class="file-preview-many">
+                                <img alt="" ng-src="{{marketing.idFrontImg}}">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div tabindex="500" class="btn btn-primary btn-file">
+                            <i class="glyphicon glyphicon-folder-open"></i>
+                            <span class="hidden-xs">选择 …</span>
+                            <input id="pic_file" type="file" name="idFile" custom-on-change="uploadPic">
+                        </div>
+                        <div>
+                            <p class="help-block" style="margin-top: 50px;font-size: 12px;">选填，JPEG,PNG 335*150</p>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!--活动链接-->
+                <div class="form-group form-inline" ng-if="marketing.serviceListText.indexOf(1)>-1 || marketing.serviceListText.indexOf(2)>-1">
+                    <label  class="col-xs-2">活动链接：</label>
+                    <div class="col-xs-10" ng-class="{'has-error': (marketing.activityLinkChoose == 1 && !marketing.activityLink) || (oldLink ==marketing.activityLink && isLink === false) }">
+                        <input type="text" class="form-control col-sm-5" ng-model="marketing.activityLink" name="activityLink"
+                        ng-required="marketing.activityLinkChoose == 1">
+                            <div class="col-sm-5">
+                                <div class="col-sm-4">
+                                    <label><input type="radio" name="activityLink" value="1" ng-model="marketing.activityLinkChoose"> 必填</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label><input type="radio" name="activityLink" value="0" ng-model="marketing.activityLinkChoose"> 选填</label>
+                                </div>
+                            </div>
+                        <div class="form-group text-center">
+                            <button type="button" class="btn btn-primary" ng-click="checkLink()">检查链接有效性</button>
+                        </div>
+                        <div>
+                            <small class="text-danger" ng-if="oldLink ==marketing.activityLink && isHttps === false ">
+                                <i class="iconFont">&#xe646;</i> 链接格式有误，请检查
+                            </small>
+                            <small class="text-danger" ng-if="oldLink ==marketing.activityLink && isHttps && hasInvalid">
+                                <i class="iconFont">&#xe646;</i> 链接包含异常字符，请检查
+                            </small>
+                            <small class="text-success" ng-if="oldLink ==marketing.activityLink && isLink ">
+                                <i class="iconFont 	glyphicon glyphicon-ok"></i> 链接有效
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <!--失效时间-->
+                <div class="form-group form-inline" ng-if="marketing.serviceListText.indexOf(2)>-1">
+                    <label class="col-xs-2" style="margin-top: 40px;">失效时间：<span class="text-danger">*</span></label>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="marketing.startTime" is-open="startOpened" datepicker-options="dateOptions" close-text="Close" style="margin-top:36px;"/>
+                        </span>
+                        <span class="input-group-btn" style="padding-right: 15px;">
+                            <button type="button" class="btn btn-default" ng-click="startOpened=true;"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        <uib-timepicker ng-model="marketing.startTime" hour-step="hstep" minute-step="mstep" show-meridian="false" ></uib-timepicker>
+                    </div>
+                    <span ng-if="f.messageContent.$invalid" class="text-danger margin m-l-2r">
+                            <i class="iconFont">&#xe646;</i> 必填项
+                        </span>
+                </div>
+
+                <!--发送选择-->
+                <!--发送时间-->
+                <div class="form-group form-inline">
+                    <label  class="col-xs-2">发送时间：</label>
+                    <div class="col-xs-10">
+                        <div class="col-sm-5">
+                            <div class="col-sm-4">
+                                <label><input type="radio" name="sendTime" value="0" ng-model="marketing.sendTime" ng-click="toggleDataInpput('Y')" required> 立即发送</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label><input type="radio" name="sendTime" value="1" ng-model="marketing.sendTime" ng-click="toggleDataInpput('N')" required> 定时发送</label>
+                            </div>
+                            <small class="text-danger"><i class="iconFont">&#xe646;</i> 必填项</small>
+                        </div>
+                    </div>
+                </div>
+                <!--定时发送时间显示-->
+                <div class="form-group form-inline" ng-if="marketing.shouldShowDate == true">
+                    <label  class="col-xs-2"></label>
+                    <div class="col-xs-10">
+                        <div class="col-sm-5">
+                        <div class="input-group input-group-sm">
+                        <span class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="marketing.sendTimeShow" is-open="startOpened"datepicker-options="dateOptions" close-text="Close" style="margin-top:36px;"/>
+                        </span>
+                            <span class="input-group-btn" style="padding-right: 15px;">
+                            <button type="button" class="btn btn-default" ng-click="startOpened=true;"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                            <uib-timepicker ng-model="marketing.sendTimeShow" hour-step="hstep" minute-step="mstep" show-meridian="false" ></uib-timepicker>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!--发送对象-->
+                <div class="form-group form-inline">
+                    <label  class="col-xs-2">发送对象：</label>
+                    <div class="col-xs-10">
+                        <div class="col-sm-5">
+                            <button type="button" class="btn btn-primary" ng-bind="marketing.allUser" ng-click="chooseAllUser()" ng-disabled="marketing.serviceListText.length == 1 && marketing.serviceListText.indexOf(0)>-1"></button>
+                            <button type="button" class="btn btn-primary" ng-click="chooseSelectUser()" ng-if="marketing.beforefilter == true">筛选用户</button>
+                            <button type="button" class="btn btn-primary" ng-click="chooseSelectUser()" ng-if="marketing.beforefilter != true">
+                                <span>已选择</span>
+                                <span ng-bind="marketing.filterPeople"></span>
+                                <span>用户</span>
+                            </button>
+                        </div>
+                        <small class="text-danger"><i class="iconFont">&#xe646;</i>发送对象和手机号码至少一个不为空</small>
+                    </div>
+                </div>
+                <!--手机号码-->
+                <div class="form-group form-inline">
+                    <label  class="col-xs-2">手机号码：</label>
+                    <div class="col-xs-10">
+                        <textarea class="form-control" cols="64" rows="4" ng-model="marketing.mobileList"
+                                   name="messageContent" maxlength="70" ng-required="marketing.beforefilter == true && marketing.beforeall == true"></textarea>
+                        <small>请使用英文半角;隔开，用于指定号码发送</small>
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="button" class="btn btn-primary" ng-click="doSend()" ng-disabled="f.$invalid || marketing.serviceListText.length == 0">确认发送</button>
+                </div>
+            </fieldset>
+            </form>
+        </div>
+    </div>
+
+
+</div>

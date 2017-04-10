@@ -1,0 +1,402 @@
+<div name="filterForm" class="filter">
+    <div class="modal-header bg-primary filter-title-bg" style="padding: 0">
+        <div class="modal-title text-center ">
+            <span  style="line-height: 2.2457143">群发用户筛选</span>
+            <button class="btn btn-primary pull-right" type="button" ng-click="filter.cancel()"><i class="iconFont">&#xe614;</i>关闭</button>
+            <div class="clearfix"></div></div>
+
+    </div>
+    <div class="modal-body row filter-content">
+        <div class="form-group form-inline">
+            <label for=""> | 单品行为筛选</label>
+        </div>
+        <div class="col-xs-12 custom-col-xs-12 filter-row">
+            <!--商品ID-->
+            <div class="form-group form-inline">
+                <label  class="col-xs-2">商品ID：</label>
+                <div class="col-xs-10">
+                    <input type="text" class="form-control" ng-model="filter.productId" name="productId">
+                    <small>选填，多个商品ID用;分隔</small>
+                    <button type="button" class="btn btn-primary" ng-click="searchItemName()" ng-disabled="!filter.productId">查看商品名称</button>
+                </div>
+            </div>
+            <!--显示商品名称-->
+            <div class="form-group form-inline" ng-if="filter.showItem == true" ng-repeat="item in filter.pmList">
+                <label  class="col-xs-2"></label>
+                <div class="col-xs-10" style="padding-top: 10px;">{{item.pmId}}  {{item.pmName}}</div>
+            </div>
+            <div class="form-group form-inline" ng-if="filter.showItem == true && filter.pmList.length == 0">
+                <label  class="col-xs-2"></label>
+                <div class="col-xs-10" style="padding-top: 10px;">此商品无名称显示</div>
+            </div>
+            <!--操作时间-->
+            <div class="form-group form-inline">
+                <label class="col-xs-2 " style="padding-top: 40px;">操作时间：</label>
+                <div class="input-group input-group-sm">
+                        <span class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="filter.operateStartTime" is-open="operateStartOpened" max-date="filter.operateEndTime" datepicker-options="dateOptions" close-text="Close" style="margin-top:36px;"/>
+                        </span>
+                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="operateStartOpened=true;"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    <uib-timepicker ng-model="filter.operateStartTime" hour-step="hstep" minute-step="mstep" show-meridian="false" ></uib-timepicker>
+                </div>
+                <div class="input-group input-group-sm">
+                    <span> ～ </span>
+                </div>
+                <div class="input-group input-group-sm">
+                        <span class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="filter.operateEndTime" is-open="operateEndOpened" min-date="filter.operateStartTime" datepicker-options="dateOptions" close-text="Close" style="margin-top:36px;"/>
+                        </span>
+                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="operateEndOpened=true;"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    <uib-timepicker ng-model="filter.operateEndTime" hour-step="hstep" minute-step="mstep" show-meridian="false" ></uib-timepicker>
+                </div>
+            </div>
+            <!--操作行为-->
+            <div class="form-group form-inline">
+                <label class="col-xs-12">操作行为：
+                    <small class="text-danger">（请先输入商品ID以及操作时间）</small>
+                </label>
+                <div class="col-sm-12" ng-repeat="item in filter.actList">
+                    <label>
+                        <input
+                                type="checkbox"
+                                value="{{item.value}}"
+                                ng-checked="filter.actListText.indexOf(item.value)>-1"
+                                ng-click="toggleSelectionAct(item)">
+                        <span>{{item.name}}</span>
+                        <span ng-if="item.showDig == true">
+                            <span>【</span>
+                            <span ng-bind="item.catIds"></span>
+                            <span>】</span>
+                        </span>
+                    </label>
+
+                </div>
+                <div class="filter-operatecover" ng-if="!filter.operateEndTime || !filter.operateStartTime || !filter.productId"></div>
+            </div>
+        </div>
+        <div class="form-group form-inline">
+            <label for=""> | 类目购买筛选</label>
+        </div>
+        <div class="col-xs-12 custom-col-xs-12 filter-row">
+            <!--用户购买时间-->
+            <div class="form-group form-inline">
+                <label class="col-xs-2 " style="padding-top: 40px;">操作时间：</label>
+                <div class="input-group input-group-sm">
+                        <span class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="filter.buyStartTime" is-open="buyStartTimeOpened" max-date="filter.buyEndTime" datepicker-options="dateOptions" close-text="Close" style="margin-top:36px;"/>
+                        </span>
+                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="buyStartTimeOpened=true;"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    <uib-timepicker ng-model="filter.buyStartTime" hour-step="hstep" minute-step="mstep" show-meridian="false" ></uib-timepicker>
+                </div>
+                <div class="input-group input-group-sm">
+                    <span> ～ </span>
+                </div>
+                <div class="input-group input-group-sm">
+                        <span class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="filter.buyEndTime" is-open="buyEndTimeOpened" min-date="filter.buyStartTime" datepicker-options="dateOptions" close-text="Close" style="margin-top:36px;"/>
+                        </span>
+                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="buyEndTimeOpened=true;"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    <uib-timepicker ng-model="filter.buyEndTime" hour-step="hstep" minute-step="mstep" show-meridian="false" ></uib-timepicker>
+                </div>
+            </div>
+            <!--类目-->
+            <div class="form-group form-inline filter-cat">
+                <label class="col-xs-2">发送渠道：</label>
+                <small class="text-danger">（若需要查看数量，请先输入商品ID以及选择时间）</small>
+                <div class="col-xs-12" ng-repeat="item in filter.productList">
+                    <i class="iconFont" ng-if="item.isShow != true" ng-click="showSecondCatFunc(item,1)">&#xe618;</i>
+                    <i class="iconFont" ng-if="item.isShow == true" ng-click="showSecondCatFunc(item,0)">&#xe600;</i>
+                    <label style="padding-left: 5px;">
+                        <input
+                                type="checkbox"
+                                value="{{item.value}}"
+                                ng-checked="item.hasChosen == true"
+                                ng-click="toggleSelectionChooseFirstCat(item)"
+                                ng-disabled="filter.canChooseCat == true">
+                        <span>{{item.label}}</span>
+                        <span ng-if="item.showDig == true">
+                            <span>【</span>
+                            <span ng-bind="item.count"></span>
+                            <span>】</span>
+                        </span>
+                    </label>
+                    <!--二级类目-->
+                    <div class="col-xs-12" ng-repeat="itemSecond in item.combox2" ng-if="item.isShow == true">
+                        <i class="iconFont" ng-if="itemSecond.isShow != true" ng-click="showThirdCatFunc(itemSecond,1)">&#xe618;</i>
+                        <i class="iconFont" ng-if="itemSecond.isShow == true" ng-click="showThirdCatFunc(itemSecond,0)">&#xe600;</i>
+
+                        <label style="padding-left: 5px;">
+                            <input
+                                    type="checkbox"
+                                    value="{{itemSecond.value}}"
+                                    ng-checked="itemSecond.hasChosen == true"
+                                    ng-click="toggleSelectionChooseSecondCat(itemSecond,item)">
+                            <span>{{itemSecond.label}}</span>
+                            <span ng-if="itemSecond.showDig == true">
+                                <span>【</span>
+                                <span ng-bind="itemSecond.count"></span>
+                                <span>】</span>
+                            </span>
+                        </label>
+                        <!--三级类目-->
+                        <div class="col-xs-12" ng-repeat="itemThird in itemSecond.combox3" ng-if="itemSecond.isShow == true">
+                            <label style="padding-left: 20px;">
+                                <input
+                                        type="checkbox"
+                                        value="{{itemThird.value}}"
+                                        ng-checked="itemThird.hasChosen == true"
+                                        ng-click="toggleSelectionChooseThirdCat(itemThird,itemSecond,item)">
+                                <span>{{itemThird.label}}</span>
+                                <span ng-if="itemThird.showDig == true">
+                                    <span>【</span>
+                                    <span ng-bind="itemThird.count"></span>
+                                    <span>】</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-catcover" ng-if="filter.productList.length > 0 &&(!filter.buyEndTime || !filter.buyStartTime || !filter.productId)"></div>
+            </div>
+            <!--逻辑关系-->
+            <div class="form-group form-inline">
+                <label  class="col-xs-2">逻辑关系：</label>
+                <div class="col-xs-10">
+                    <div class="col-sm-5">
+                        <div class="col-sm-3">
+                            <label><input type="radio" name="logicRelation" value="0" ng-model="filter.logicRelation"> 并</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label><input type="radio" name="logicRelation" value="1" ng-model="filter.logicRelation"> 或</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label><input type="radio" name="logicRelation" value="2" ng-model="filter.logicRelation"> 除</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-sm" type="button" ng-click="addCatAttr()"
+                            ng-disabled="!filter.logicRelation">
+                        <span  style="line-height: 2.2457143">增加筛选属性</span>
+                    </button>
+                    <small>【注意】*并为交集关系，或为加和关系，除为减法关系</small>
+                </div>
+            </div>
+            <!--新增逻辑关系-->
+            <!--用户购买时间 新增-->
+            <div class="form-group form-inline" ng-if="filter.showCat2 == true">
+                <label class="col-xs-2 " style="padding-top: 40px;">操作时间：</label>
+                <div class="input-group input-group-sm">
+                        <span class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="filter.buyStartTime2" is-open="buyStartTimeOpened" max-date="filter.buyEndTime2" datepicker-options="dateOptions" close-text="Close" style="margin-top:36px;"/>
+                        </span>
+                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="buyStartTimeOpened=true;"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    <uib-timepicker ng-model="filter.buyStartTime2" hour-step="hstep" minute-step="mstep" show-meridian="false" ></uib-timepicker>
+                </div>
+                <div class="input-group input-group-sm">
+                    <span> ～ </span>
+                </div>
+                <div class="input-group input-group-sm">
+                        <span class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="filter.buyEndTime2" is-open="buyEndTimeOpened" min-date="filter.buyStartTime2" datepicker-options="dateOptions" close-text="Close" style="margin-top:36px;"/>
+                        </span>
+                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="buyEndTimeOpened=true;"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    <uib-timepicker ng-model="filter.buyEndTime2" hour-step="hstep" minute-step="mstep" show-meridian="false" ></uib-timepicker>
+                </div>
+            </div>
+            <!--类目 新增-->
+            <div class="form-group form-inline filter-cat" ng-if="filter.showCat2 == true">
+                <label class="col-xs-2">发送渠道：</label>
+                <small class="text-danger">（若需要查看数量，请先输入商品ID以及选择时间）</small>
+                <div class="col-xs-12" ng-repeat="item in filter.productList2">
+                    <i class="iconFont" ng-if="item.isShow != true" ng-click="showSecondCatFunc(item,1,'new')">&#xe618;</i>
+                    <i class="iconFont" ng-if="item.isShow == true" ng-click="showSecondCatFunc(item,0,'new')">&#xe600;</i>
+                    <label style="padding-left: 5px;">
+                        <input
+                                type="checkbox"
+                                value="{{item.value}}"
+                                ng-checked="item.hasChosen == true"
+                                ng-click="toggleSelectionChooseFirstCat(item,'new')"
+                                ng-disabled="filter.canChooseCat == true">
+                        <span>{{item.label}}</span>
+                        <span ng-if="item.showDig == true">
+                            <span>【</span>
+                            <span ng-bind="item.count"></span>
+                            <span>】</span>
+                        </span>
+                    </label>
+                    <!--二级类目-->
+                    <div class="col-xs-12" ng-repeat="itemSecond in item.combox2" ng-if="item.isShow == true">
+                        <i class="iconFont" ng-if="itemSecond.isShow != true" ng-click="showThirdCatFunc(itemSecond,1,2,'new')">&#xe618;</i>
+                        <i class="iconFont" ng-if="itemSecond.isShow == true" ng-click="showThirdCatFunc(itemSecond,0,2,'new')">&#xe600;</i>
+
+                        <label style="padding-left: 5px;">
+                            <input
+                                    type="checkbox"
+                                    value="{{itemSecond.value}}"
+                                    ng-checked="itemSecond.hasChosen == true"
+                                    ng-click="toggleSelectionChooseSecondCat(itemSecond,item,'new')">
+                            <span>{{itemSecond.label}}</span>
+                            <span ng-if="itemSecond.showDig == true">
+                                <span>【</span>
+                                <span ng-bind="itemSecond.count"></span>
+                                <span>】</span>
+                            </span>
+                        </label>
+                        <!--三级类目-->
+                        <div class="col-xs-12" ng-repeat="itemThird in itemSecond.combox3" ng-if="itemSecond.isShow == true">
+                            <label style="padding-left: 20px;">
+                                <input
+                                        type="checkbox"
+                                        value="{{itemThird.value}}"
+                                        ng-checked="itemThird.hasChosen == true"
+                                        ng-click="toggleSelectionChooseThirdCat(itemThird,itemSecond,item,'new')">
+                                <span>{{itemThird.label}}</span>
+                                <span ng-if="itemThird.showDig == true">
+                                    <span>【</span>
+                                    <span ng-bind="itemThird.count"></span>
+                                    <span>】</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-catcover" ng-if="!filter.buyEndTime2 || !filter.buyStartTime2 || !filter.productId"></div>
+            </div>
+            <div class="form-group form-inline">
+                <hr/>
+            </div>
+        </div>
+        <div class="form-group form-inline">
+            <label> | 症状筛选</label>
+        </div>
+        <div class="col-xs-12 custom-col-xs-12 filter-row">
+            <!--症状标签-->
+            <div class="form-group form-inline">
+                <label class="col-xs-12">症状标签：</label>
+                <div class="col-xs-10" ng-repeat="item in filter.symptomList">
+                    <i class="iconFont" ng-if="item.isShow != true" ng-click="showSecondSymFunc(item,1)">&#xe618;</i>
+                    <i class="iconFont" ng-if="item.isShow == true" ng-click="showSecondSymFunc(item,0)">&#xe600;</i>
+                    <label>
+                        <input
+                                type="checkbox"
+                                value="{{item.value}}"
+                                ng-checked="item.hasChosen == true"
+                                ng-click="toggleSelectionChooseFirstSym(item)">
+                        <span>{{item.label}}</span>
+                        <span ng-if="item.showDig == true">
+                            <span>【</span>
+                            <span ng-bind="item.count"></span>
+                            <span>】</span>
+                        </span>
+                    </label>
+                    <!--症状二级级类目-->
+                    <div class="col-xs-12" ng-repeat="itemSecond in item.symptomCombox2" ng-if="item.isShow == true">
+                        <label style="padding-left: 20px;">
+                            <input
+                                    type="checkbox"
+                                    value="{{itemSecond.value}}"
+                                    ng-checked="itemSecond.hasChosen == true"
+                                    ng-click="toggleSelectionChooseSecondSym(itemSecond,item)">
+                            <span>{{itemSecond.label}}</span>
+                            <span ng-if="itemSecond.showDig == true">
+                                    <span>【</span>
+                                    <span ng-bind="itemSecond.count"></span>
+                                    <span>】</span>
+                                </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-inline">
+            <label for=""> | 其他筛选</label>
+        </div>
+        <div class="col-xs-12 custom-col-xs-12 filter-row">
+            <!--用户类型-->
+            <div class="form-group form-inline PB50">
+                <label class="col-xs-12">用户类型：</label>
+                <div class="col-sm-2" ng-repeat="item in filter.userTypeList">
+                    <label>
+                        <input
+                                type="checkbox"
+                                value="{{item.value}}"
+                                ng-checked="filter.userTypeListText.indexOf(item.value)>-1"
+                                ng-click="toggleSelectionUserType(item.value)"> {{item.name}}
+                    </label>
+                </div>
+            </div>
+            <!--用户限制-->
+            <div class="form-group form-inline PB50">
+                <label class="col-xs-12">用户性别：</label>
+                <div class="col-sm-1" ng-repeat="item in filter.userSexList">
+                    <label>
+                        <input
+                                type="checkbox"
+                                value="{{item.value}}"
+                                ng-checked="filter.userSexListText.indexOf(item.value)>-1"
+                                ng-click="toggleSelectionSex(item.value)"> {{item.name}}
+                    </label>
+                </div>
+            </div>
+            <!--所在地域-->
+            <div class="form-group form-inline PB50">
+                <label class="col-xs-12">所在地域：</label>
+                <div class="col-sm-2" ng-repeat="item in filter.regionList">
+                    <label>
+                        <input
+                                type="checkbox"
+                                value="{{item.value}}"
+                                ng-checked="filter.regionListText.indexOf(item.value)>-1"
+                                ng-click="toggleSelectionRegion(item.value)"> {{item.name}}
+                    </label>
+                </div>
+            </div>
+            <!--屏蔽用户-->
+            <div class="form-group form-inline PB30">
+                <!--<div class="col-sm-1">-->
+
+                <!--</div>-->
+                <div class="col-sm-12">
+                    <input type="checkbox"
+                           value="{{filter.screenmask}}"
+                           ng-checked="filter.screenmask == true"
+                           ng-click="toggleSelectionForbidDay()">
+                    <span>屏蔽近</span>
+                    <!--<div class="col-sm-2">-->
+                        <select class="form-control" ng-model="filter.forbidDay" ng-options="list as list for list in filter.dayList"></select>
+                    <!--</div>-->
+                    <span>天内发送过的手机号</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-footer">
+        <button class="btn btn-info btn-filter-confirm" type="button" ng-click="filter.search()"
+                ng-disabled="filterForm.$invalid">
+            <span  style="line-height: 2.2457143">查询筛选用户数</span>
+        </button>
+        <button class="btn btn-info btn-filter-confirm" type="button" ng-click="filter.confirm()"
+                ng-disabled="filterForm.$invalid || filter.notConfirm == true">
+            <span  style="line-height: 2.2457143">确认筛选用户</span>
+        </button>
+        <div ng-if="filter.searchFinsh == true">
+            <span>共查询到</span>
+            <span ng-bind="filter.people"></span>
+            <span>条符合条件的用户</span>
+        </div>
+        <div ng-if="filter.searchFinsh == false">
+            <span>人数查询中...请稍候</span>
+        </div>
+    </div>
+</div>
